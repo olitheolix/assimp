@@ -33,6 +33,9 @@ if os.name=='posix':
         additional_dirs.append(
             os.path.join(os.getenv('CONDA_ENV_PATH'), 'lib'))
 
+    # Standard library directory in Anaconda container.
+    additional_dirs.append('/opt/conda/lib/')
+
     # Default system locations.
     additional_dirs.append('/usr/lib/')
     additional_dirs.append('/usr/local/lib/')
