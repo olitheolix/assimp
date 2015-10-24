@@ -1,0 +1,29 @@
+package:
+  name: assimp
+  version: "git"
+
+source:
+  path: ../../../../
+  
+build:
+  number: 1
+
+requirements:
+  build:
+    - python
+    - numpy
+
+  run:
+    - python
+    - numpy
+
+test:
+  imports:
+    - pyassimp
+
+  requires:
+    - numpy
+
+about:
+    home: https://github.com/assimp/assimp
+    license: Unknown

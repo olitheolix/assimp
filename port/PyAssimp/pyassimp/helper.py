@@ -3,7 +3,6 @@
 """
 Some fancy helper functions.
 """
-
 import os
 import ctypes
 from ctypes import POINTER
@@ -21,9 +20,22 @@ additional_dirs, ext_whitelist = [],[]
 # populate search directories and lists of allowed file extensions
 # depending on the platform we're running on.
 if os.name=='posix':
+    # Update the search location for the dynamic library. Usually these are the
+    # system default directories except when we are inside an Anaconda
+    # environment.
     additional_dirs.append('./')
-    additional_dirs.append('/usr/lib/')
-    additional_dirs.append('/usr/local/lib/')
+
+    if os.getenv('LD_RUN_PATH') is not None:
+        # Anaconda build environment (during package building)
+        additional_dirs.append(os.getenv('LD_RUN_PATH'))
+    elif os.getenv('CONDA_ENV_PATH') is not None:
+        # Anaconda environment (runtime).
+        additional_dirs.append(
+            os.path.join(os.getenv('CONDA_ENV_PATH'), 'lib'))
+    else:
+        # Default system locations.
+        additional_dirs.append('/usr/lib/')
+        additional_dirs.append('/usr/local/lib/')
 
     # note - this won't catch libassimp.so.N.n, but 
     # currently there's always a symlink called
