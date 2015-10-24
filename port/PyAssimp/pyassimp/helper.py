@@ -216,6 +216,10 @@ def search_library():
     candidates = []
     # test every file
     for curfolder in [folder]+additional_dirs:
+        # Skip non-existing library directories.
+        if not os.path.exists(curfolder):
+            continue
+
         for filename in os.listdir(curfolder):
             # our minimum requirement for candidates is that
             # they should contain 'assimp' somewhere in 
