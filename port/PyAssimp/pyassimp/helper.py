@@ -32,10 +32,10 @@ if os.name=='posix':
         # Anaconda environment (runtime).
         additional_dirs.append(
             os.path.join(os.getenv('CONDA_ENV_PATH'), 'lib'))
-    else:
-        # Default system locations.
-        additional_dirs.append('/usr/lib/')
-        additional_dirs.append('/usr/local/lib/')
+
+    # Default system locations.
+    additional_dirs.append('/usr/lib/')
+    additional_dirs.append('/usr/local/lib/')
 
     # note - this won't catch libassimp.so.N.n, but 
     # currently there's always a symlink called
@@ -51,7 +51,6 @@ elif os.name=='nt':
         if 'assimp' in dir_candidate.lower():
             additional_dirs.append(dir_candidate)
             
-#print(additional_dirs)
 def vec2tuple(x):
     """ Converts a VECTOR3D to a Tuple """
     return (x.x, x.y, x.z)

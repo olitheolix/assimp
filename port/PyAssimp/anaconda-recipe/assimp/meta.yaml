@@ -12,17 +12,21 @@ requirements:
   build:
     - python
     - numpy
+    - gcc
+    - cmake
+    - libgcc
 
   run:
     - python
     - numpy
+    - libgcc
 
-test:
-  imports:
-    - pyassimp
+# test:
+#   imports:
+#     - pyassimp
 
-  requires:
-    - numpy
+#   requires:
+#     - numpy
 
 about:
     home: https://github.com/assimp/assimp
