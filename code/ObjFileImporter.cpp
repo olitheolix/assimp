@@ -3,7 +3,7 @@
 Open Asset Import Library (assimp)
 ---------------------------------------------------------------------------
 
-Copyright (c) 2006-2015, assimp team
+Copyright (c) 2006-2016, assimp team
 
 All rights reserved.
 
@@ -138,7 +138,7 @@ void ObjFileImporter::InternReadFile( const std::string& pFile, aiScene* pScene,
     if ( pos != std::string::npos ) {
         modelName = pFile.substr(pos+1, pFile.size() - pos - 1);
         folderName = pFile.substr( 0, pos );
-        if ( folderName.empty() ) {
+        if ( !folderName.empty() ) {
             pIOHandler->PushDirectory( folderName );
         }
     } else {

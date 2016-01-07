@@ -3,7 +3,7 @@
 Open Asset Import Library (assimp)
 ---------------------------------------------------------------------------
 
-Copyright (c) 2006-2015, assimp team
+Copyright (c) 2006-2016, assimp team
 
 All rights reserved.
 
@@ -491,7 +491,7 @@ const aiScene* Importer::ReadFileFromMemory( const void* pBuffer,
         pHint = "";
     }
 
-    if (!pBuffer || !pLength || strlen(pHint) > 100) {
+    if (!pBuffer || !pLength || strlen(pHint) > MaxLenHint ) {
         pimpl->mErrorString = "Invalid parameters passed to ReadFileFromMemory()";
         return NULL;
     }
@@ -503,8 +503,9 @@ const aiScene* Importer::ReadFileFromMemory( const void* pBuffer,
     SetIOHandler(new MemoryIOSystem((const uint8_t*)pBuffer,pLength));
 
     // read the file and recover the previous IOSystem
-    char fbuff[128];
-    sprintf(fbuff,"%s.%s",AI_MEMORYIO_MAGIC_FILENAME,pHint);
+    static const size_t BufferSize(Importer::MaxLenHint + 28);
+    char fbuff[ BufferSize ];
+    ai_snprintf(fbuff, BufferSize, "%s.%s",AI_MEMORYIO_MAGIC_FILENAME,pHint);
 
     ReadFile(fbuff,pFlags);
     SetIOHandler(io);
