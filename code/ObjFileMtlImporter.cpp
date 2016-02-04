@@ -87,7 +87,7 @@ static const std::string TypeOption         = "-type";
 // -------------------------------------------------------------------
 //  Constructor
 ObjFileMtlImporter::ObjFileMtlImporter( std::vector<char> &buffer,
-                                       const std::string & /*strAbsPath*/,
+                                       const std::string &,
                                        ObjFile::Model *pModel ) :
     m_DataIt( buffer.begin() ),
     m_DataItEnd( buffer.end() ),
@@ -112,14 +112,14 @@ ObjFileMtlImporter::~ObjFileMtlImporter()
 
 // -------------------------------------------------------------------
 //  Private copy constructor
-ObjFileMtlImporter::ObjFileMtlImporter(const ObjFileMtlImporter & /* rOther */ )
+ObjFileMtlImporter::ObjFileMtlImporter(const ObjFileMtlImporter & )
 {
     // empty
 }
 
 // -------------------------------------------------------------------
 //  Private copy constructor
-ObjFileMtlImporter &ObjFileMtlImporter::operator = ( const ObjFileMtlImporter & /*rOther */ )
+ObjFileMtlImporter &ObjFileMtlImporter::operator = ( const ObjFileMtlImporter & )
 {
     return *this;
 }
@@ -339,6 +339,7 @@ void ObjFileMtlImporter::getTexture() {
     } else if(!ASSIMP_strincmp( pPtr, ReflectionTexture.c_str(), ReflectionTexture.size() ) ) {
         // Reflection texture(s)
         //Do nothing here
+        return;
     } else if (!ASSIMP_strincmp( pPtr, DisplacementTexture.c_str(), DisplacementTexture.size() ) ) {
         // Displacement texture
         out = &m_pModel->m_pCurrentMaterial->textureDisp;
