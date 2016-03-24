@@ -120,6 +120,10 @@ And we also have an IRC-channel at freenode: #assetimporterlib . You can easily 
 Contributions to assimp are highly appreciated. The easiest way to get involved is to submit
 a pull request with your changes against the main repository's `master` branch.
 
+### Donate ###
+If you like assimp, consider buying us a beer (or two):
+[Donate](http://sourceforge.net/donate/index.php?group_id=226462)
+
 ### License ###
 Our license is based on the modified, __3-clause BSD__-License.
 
